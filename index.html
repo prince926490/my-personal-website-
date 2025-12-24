@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prince Yadav | Data Scientist</title>
+    <meta name="description" content="Prince Yadav - Data Scientist skilled in Python, SQL, Java, C, and Data Analysis.">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Icons (Lucide) -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <!-- EmailJS SDK -->
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: {
+                            500: '#3b82f6', // Blue
+                            600: '#2563eb',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <style>
+        /* Custom scrollbar for Webkit browsers */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #111827; 
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #374151; 
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #4b5563; 
+        }
+        
+        /* Background Animations */
+        .blob {
+            position: absolute;
+            filter: blur(40px);
+            z-index: -1;
+            opacity: 0.4;
+            animation: move 10s infinite alternate;
+        }
+        @keyframes move {
+            from { transform: translate(0, 0) scale(1); }
+            to { transform: translate(20px, -20px) scale(1.1); }
+        }
+
+        /* === 3D VIEW TRANSITIONS === */
+        
+        /* The container needs perspective to show depth */
+        body {
+            perspective: 1200px;
+            overflow-x: hidden; /* Prevent horizontal scrollbar from 3D rotations */
+        }
+
+        /* Default state of a section: Pushed back, rotated, and invisible */
+        .reveal-section {
+            opacity: 0;
+            transform: translateY(100px) rotateX(15deg) scale(0.9);
+            transform-origin: center top; /* Rotates from top for a "swinging in" effect */
+            transition: all 1.0s cubic-bezier(0.16, 1, 0.3, 1); /* Smooth eased transition */
+            will-change: transform, opacity;
+        }
+
+        /* Active state: Normal position, fully visible */
+        .reveal-section.in-view {
+            opacity: 1;
+            transform: translateY(0) rotateX(0) scale(1);
+        }
+    </style>
+</head>
+<body class="bg-gray-900 text-gray-100 font-sans antialiased selection:bg-brand-500 selection:text-white">
+
+    <!-- ===== HEADER ===== -->
+    <header class="fixed w-full top-0 z-50 bg-gray-900/90 backdrop-blur-sm border-b border-gray-800 transition-all duration-300">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <!-- Logo -->
+                <div class="flex-shrink-0 flex items-center">
+                    <a href="#" class="text-xl font-bold bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent transform hover:scale-105 transition-transform">
+                        Prince Yadav
+                    </a>
+                </div>
+
+                <!-- Desktop Navigation -->
+                <nav class="hidden md:flex space-x-8">
+                    <a href="#about" class="text-gray-300 hover:text-white hover:text-brand-500 transition-colors text-sm font-medium">About</a>
+                    <a href="#skills" class="text-gray-300 hover:text-white hover:text-brand-500 transition-colors text-sm font-medium">Skills</a>
+                    <a href="#projects" class="text-gray-300 hover:text-white hover:text-brand-500 transition-colors text-sm font-medium">Projects</a>
+                    <a href="#contact" class="text-gray-300 hover:text-white hover:text-brand-500 transition-colors text-sm font-medium">Contact</a>
+                </nav>
+
+                <!-- Mobile Menu Button -->
+                <div class="md:hidden flex items-center">
+                    <button id="mobile-menu-btn" class="text-gray-300 hover:text-white focus:outline-none">
+                        <i data-lucide="menu" class="w-6 h-6"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Navigation Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-gray-800 border-b border-gray-700">
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+                <a href="#about" class="block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:text-white hover:bg-gray-700">About</a>
+                <a href="#skills" class="block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:text-white hover:bg-gray-700">Skills</a>
+                <a href="#projects" class="block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:text-white hover:bg-gray-700">Projects</a>
+                <a href="#contact" class="block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:text-white hover:bg-gray-700">Contact</a>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- ===== HERO ===== -->
+        <!-- Added reveal-section class -->
+        <section class="reveal-section relative min-h-screen flex items-center justify-center pt-16 overflow-hidden">
+            <!-- Background Decoration -->
+            <div class="blob bg-purple-600 w-64 h-64 rounded-full top-1/4 left-1/4"></div>
+            <div class="blob bg-blue-600 w-64 h-64 rounded-full bottom-1/4 right-1/4 animation-delay-2000"></div>
+
+            <div class="relative z-10 max-w-4xl mx-auto px-4 text-center">
+                <div class="inline-flex items-center px-3 py-1 rounded-full border border-blue-500/30 bg-blue-500/10 text-blue-300 text-sm font-medium mb-6">
+                    <span class="flex h-2 w-2 rounded-full bg-blue-400 mr-2 animate-pulse"></span>
+                    Available for work
+                </div>
+                <h2 class="text-5xl md:text-7xl font-bold tracking-tight mb-6 drop-shadow-lg">
+                    <span id="greeting-text">Hello</span>, I'm <span class="text-white">Prince Yadav</span>
+                </h2>
+                <p class="text-xl md:text-2xl text-gray-400 mb-8 max-w-2xl mx-auto">
+                    Data Scientist specializing in Python, SQL, and Machine Learning. Transforming raw data into actionable insights.
+                </p>
+                <div class="flex flex-col sm:flex-row justify-center gap-4">
+                    <a href="#projects" class="transform hover:scale-105 inline-flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-lg text-white bg-brand-600 hover:bg-brand-500 transition-all shadow-lg shadow-brand-500/30">
+                        View Projects
+                        <i data-lucide="arrow-right" class="ml-2 w-4 h-4"></i>
+                    </a>
+                    <a href="#contact" class="transform hover:scale-105 inline-flex items-center justify-center px-8 py-3 border border-gray-700 text-base font-medium rounded-lg text-gray-300 bg-gray-800 hover:bg-gray-700 transition-all">
+                        Contact Me
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== ABOUT ===== -->
+        <!-- Added reveal-section class -->
+        <section id="about" class="reveal-section py-20 bg-gray-800/50">
+            <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl font-bold text-white mb-4">About Me</h2>
+                    <div class="w-20 h-1 bg-brand-500 mx-auto rounded-full"></div>
+                </div>
+                <div class="bg-gray-800 rounded-2xl p-8 shadow-2xl border border-gray-700 hover:border-brand-500/50 transition-colors">
+                    <div class="flex flex-col md:flex-row items-center gap-8">
+                        <div class="flex-shrink-0">
+                            <div class="w-32 h-32 rounded-full bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center text-4xl font-bold text-white shadow-lg animate-pulse-slow">
+                                PY
+                            </div>
+                        </div>
+                        <div class="text-center md:text-left">
+                            <p class="text-lg text-gray-300 leading-relaxed">
+                                I am a passionate Data Scientist with a strong foundation in Python, SQL, Java, and C language. 
+                                My expertise lies in analyzing complex datasets and extracting meaningful insights to drive decision-making. 
+                                I enjoy solving challenging problems and am constantly learning new technologies to stay ahead in the evolving field of Data Science.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== SKILLS ===== -->
+        <!-- Added reveal-section class -->
+        <section id="skills" class="reveal-section py-20">
+            <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-16">
+                    <h2 class="text-3xl font-bold text-white mb-4">Technical Skills</h2>
+                    <div class="w-20 h-1 bg-brand-500 mx-auto rounded-full"></div>
+                </div>
+                
+                <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6">
+                    <!-- Skill Item -->
+                    <div class="group bg-gray-800 p-6 rounded-xl border border-gray-700 hover:border-brand-500 transition-all hover:-translate-y-2 hover:shadow-lg hover:shadow-brand-500/20 text-center cursor-pointer">
+                        <i data-lucide="code-2" class="w-8 h-8 mx-auto text-blue-400 mb-3 group-hover:scale-110 transition-transform"></i>
+                        <h3 class="font-semibold text-white">Python</h3>
+                    </div>
+                    
+                    <div class="group bg-gray-800 p-6 rounded-xl border border-gray-700 hover:border-brand-500 transition-all hover:-translate-y-2 hover:shadow-lg hover:shadow-green-500/20 text-center cursor-pointer">
+                        <i data-lucide="database" class="w-8 h-8 mx-auto text-green-400 mb-3 group-hover:scale-110 transition-transform"></i>
+                        <h3 class="font-semibold text-white">SQL</h3>
+                    </div>
+                    
+                    <div class="group bg-gray-800 p-6 rounded-xl border border-gray-700 hover:border-brand-500 transition-all hover:-translate-y-2 hover:shadow-lg hover:shadow-purple-500/20 text-center cursor-pointer">
+                        <i data-lucide="bar-chart-2" class="w-8 h-8 mx-auto text-purple-400 mb-3 group-hover:scale-110 transition-transform"></i>
+                        <h3 class="font-semibold text-white">Data Science</h3>
+                    </div>
+                    
+                    <div class="group bg-gray-800 p-6 rounded-xl border border-gray-700 hover:border-brand-500 transition-all hover:-translate-y-2 hover:shadow-lg hover:shadow-orange-500/20 text-center cursor-pointer">
+                        <i data-lucide="coffee" class="w-8 h-8 mx-auto text-orange-400 mb-3 group-hover:scale-110 transition-transform"></i>
+                        <h3 class="font-semibold text-white">Java</h3>
+                    </div>
+                    
+                    <div class="group bg-gray-800 p-6 rounded-xl border border-gray-700 hover:border-brand-500 transition-all hover:-translate-y-2 hover:shadow-lg hover:shadow-gray-500/20 text-center cursor-pointer">
+                        <i data-lucide="terminal" class="w-8 h-8 mx-auto text-gray-400 mb-3 group-hover:scale-110 transition-transform"></i>
+                        <h3 class="font-semibold text-white">C Lang</h3>
+                    </div>
+                    
+                    <div class="group bg-gray-800 p-6 rounded-xl border border-gray-700 hover:border-brand-500 transition-all hover:-translate-y-2 hover:shadow-lg hover:shadow-yellow-500/20 text-center cursor-pointer">
+                        <i data-lucide="book-open" class="w-8 h-8 mx-auto text-yellow-400 mb-3 group-hover:scale-110 transition-transform"></i>
+                        <h3 class="font-semibold text-white">Jupyter</h3>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== PROJECTS ===== -->
+        <!-- Added reveal-section class -->
+        <section id="projects" class="reveal-section py-20 bg-gray-800/50">
+            <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-16">
+                    <h2 class="text-3xl font-bold text-white mb-4">Featured Projects</h2>
+                    <div class="w-20 h-1 bg-brand-500 mx-auto rounded-full"></div>
+                </div>
+
+                <div class="grid md:grid-cols-2 gap-8">
+                    <!-- Project 1 -->
+                    <div class="bg-gray-800 rounded-2xl overflow-hidden shadow-xl border border-gray-700 group hover:border-brand-500 transition-all hover:-translate-y-2">
+    
+                        <!-- Project Header -->
+                        <div class="h-48 bg-gradient-to-r from-red-900 to-slate-900 flex items-center justify-center group-hover:opacity-90 transition-opacity">
+                            <i data-lucide="shield-alert" class="w-16 h-16 text-red-400 group-hover:scale-125 transition-transform duration-500"></i>
+                        </div>
+                    
+                        <!-- Project Content -->
+                        <div class="p-8">
+                            <h3 class="text-xl font-bold text-white mb-2">Fake News Detection System</h3>
+                            
+                            <p class="text-gray-400 mb-4">
+                                Developed a machine learning–based Fake News Detection system that classifies news articles as real or fake using NLP techniques, text preprocessing, and supervised learning algorithms.
+                            </p>
+                    
+                            <div class="flex flex-wrap gap-2 mb-4">
+                                <span class="px-3 py-1 bg-gray-700 text-xs rounded-full text-gray-300">Python</span>
+                                <span class="px-3 py-1 bg-gray-700 text-xs rounded-full text-gray-300">NLP</span>
+                                <span class="px-3 py-1 bg-gray-700 text-xs rounded-full text-gray-300">Machine Learning</span>
+                                <span class="px-3 py-1 bg-gray-700 text-xs rounded-full text-gray-300">Scikit-learn</span>
+                            </div>
+                    
+                            <a href="https://github.com/prince926490/fake-news-detector"
+                               target="_blank"
+                               class="inline-block text-brand-500 font-medium hover:underline text-sm hover:text-brand-400 transition-colors">
+                                View on GitHub →
+                            </a>
+                        </div>
+
+                    </div>
+
+
+                    <!-- Project 2 -->
+                    <div class="bg-gray-800 rounded-2xl overflow-hidden shadow-xl border border-gray-700 group hover:border-brand-500 transition-all hover:-translate-y-2">
+                        <div class="h-48 bg-gradient-to-r from-green-900 to-slate-900 flex items-center justify-center group-hover:opacity-90 transition-opacity">
+                            <i data-lucide="database" class="w-16 h-16 text-green-400 group-hover:scale-125 transition-transform duration-500"></i>
+                        </div>
+                        <div class="p-8">
+                            <h3 class="text-xl font-bold text-white mb-2">SQL Database Project</h3>
+                            <p class="text-gray-400 mb-4">
+                                Optimized database queries and schema design to manage complex data relationships and generate business insights using SQL.
+                            </p>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="px-3 py-1 bg-gray-700 text-xs rounded-full text-gray-300">SQL</span>
+                                <span class="px-3 py-1 bg-gray-700 text-xs rounded-full text-gray-300">Database Design</span>
+                                <span class="px-3 py-1 bg-gray-700 text-xs rounded-full text-gray-300">Queries</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== CONTACT ===== -->
+        <!-- Added reveal-section class -->
+        <section id="contact" class="reveal-section py-20 relative overflow-hidden">
+            <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+                <div class="text-center mb-16">
+                    <h2 class="text-3xl font-bold text-white mb-4">Get In Touch</h2>
+                    <div class="w-20 h-1 bg-brand-500 mx-auto rounded-full"></div>
+                    <p class="mt-4 text-gray-400">Have a question or want to work together?</p>
+                </div>
+
+                <div class="grid md:grid-cols-3 gap-8">
+                    <!-- Contact Info -->
+                    <div class="md:col-span-1 space-y-6">
+                        <div class="flex items-start space-x-4 hover:bg-gray-800 p-2 rounded-lg transition-colors">
+                            <div class="bg-gray-800 p-3 rounded-lg text-brand-500">
+                                <i data-lucide="mail" class="w-6 h-6"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-white font-medium">Email</h4>
+                                <a href="mailto:princeyadavji68@gmail.com" class="text-gray-400 hover:text-brand-500 text-sm break-all">princeyadavji68@gmail.com</a>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start space-x-4 hover:bg-gray-800 p-2 rounded-lg transition-colors">
+                            <div class="bg-gray-800 p-3 rounded-lg text-brand-500">
+                                <i data-lucide="phone" class="w-6 h-6"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-white font-medium">Mobile</h4>
+                                <a href="tel:+919264900894" class="text-gray-400 hover:text-brand-500 text-sm">9264900894</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Contact Form -->
+                    <div class="md:col-span-2 bg-gray-800 p-8 rounded-2xl border border-gray-700 shadow-xl">
+                        <form id="contact-form" class="space-y-6">
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                                <div>
+                                    <label for="name" class="block text-sm font-medium text-gray-400 mb-2">Your Name</label>
+                                    <input type="text" name="name" id="name" required
+                                        class="w-full bg-gray-900 border border-gray-700 rounded-lg px-4 py-3 text-white focus:outline-none focus:ring-2 focus:ring-brand-500 focus:border-transparent transition-all"
+                                        placeholder="Prince Yadav">
+                                </div>
+                                <div>
+                                    <label for="email" class="block text-sm font-medium text-gray-400 mb-2">Your Email</label>
+                                    <input type="email" name="email" id="email" required
+                                        class="w-full bg-gray-900 border border-gray-700 rounded-lg px-4 py-3 text-white focus:outline-none focus:ring-2 focus:ring-brand-500 focus:border-transparent transition-all"
+                                        placeholder="prince@example.com">
+                                </div>
+                            </div>
+                            
+                            <div>
+                                <label for="message" class="block text-sm font-medium text-gray-400 mb-2">Message</label>
+                                <textarea name="message" id="message" rows="4" required
+                                    class="w-full bg-gray-900 border border-gray-700 rounded-lg px-4 py-3 text-white focus:outline-none focus:ring-2 focus:ring-brand-500 focus:border-transparent transition-all resize-none"
+                                    placeholder="Tell me about your project..."></textarea>
+                            </div>
+
+                            <button type="submit" id="submit-btn"
+                                class="w-full bg-brand-600 hover:bg-brand-500 text-white font-medium py-3 px-4 rounded-lg transition-colors flex items-center justify-center">
+                                <span>Send Message</span>
+                                <i data-lucide="send" class="ml-2 w-4 h-4"></i>
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- ===== FOOTER ===== -->
+    <footer class="bg-gray-900 border-t border-gray-800 py-12">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center gap-6">
+        
+        <div class="text-center md:text-left">
+            <h2 class="text-xl font-bold text-white mb-2">Prince Yadav</h2>
+            <p class="text-gray-500 text-sm">© 2025 All rights reserved.</p>
+        </div>
+        
+        <div class="flex space-x-6">
+
+            <!-- LinkedIn -->
+            <a href="https://www.linkedin.com/in/prince-yadav-a5658b378"
+               target="_blank"
+               rel="noopener noreferrer"
+               aria-label="LinkedIn Profile"
+               class="text-gray-400 hover:text-blue-500 transition-colors">
+                <i data-lucide="linkedin" class="w-5 h-5"></i>
+            </a>
+
+            <!-- GitHub -->
+            <a href="https://github.com/prince926490"
+               target="_blank"
+               rel="noopener noreferrer"
+               aria-label="GitHub Profile"
+               class="text-gray-400 hover:text-white transition-colors">
+                <i data-lucide="github" class="w-5 h-5"></i>
+            </a>
+
+            <!-- Instagram (replacing Twitter) -->
+            <a href="https://www.instagram.com/yadu1c_prince001"
+               target="_blank"
+               rel="noopener noreferrer"
+               aria-label="Instagram Profile"
+               class="text-gray-400 hover:text-pink-500 transition-colors">
+                <i data-lucide="instagram" class="w-5 h-5"></i>
+            </a>
+
+        </div>
+    </div>
+</footer>
+
+
+    <!-- Notification Toast (Hidden by default) -->
+    <div id="toast" class="fixed bottom-5 right-5 transform translate-y-20 opacity-0 transition-all duration-300 z-50">
+        <div class="bg-gray-800 border border-gray-700 text-white px-6 py-4 rounded-lg shadow-2xl flex items-center space-x-3">
+            <div class="bg-green-500/20 p-2 rounded-full">
+                <i data-lucide="check" class="w-5 h-5 text-green-500"></i>
+            </div>
+            <div>
+                <h4 class="font-medium">Message Sent!</h4>
+                <p class="text-sm text-gray-400">I'll get back to you soon.</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Initialize Icons
+        lucide.createIcons();
+
+        // Dynamic Greeting Logic
+        function updateGreeting() {
+            const hour = new Date().getHours();
+            const greetingText = document.getElementById('greeting-text');
+            
+            if (hour >= 5 && hour < 12) {
+                greetingText.textContent = "Good Morning";
+            } else if (hour >= 12 && hour < 18) {
+                greetingText.textContent = "Good Afternoon";
+            } else {
+                greetingText.textContent = "Good Evening";
+            }
+        }
+        updateGreeting();
+
+        // Mobile Menu Toggle
+        const btn = document.getElementById('mobile-menu-btn');
+        const menu = document.getElementById('mobile-menu');
+
+        btn.addEventListener('click', () => {
+            menu.classList.toggle('hidden');
+        });
+
+        // Close mobile menu when clicking a link
+        document.querySelectorAll('#mobile-menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                menu.classList.add('hidden');
+            });
+        });
+
+        // 3D SCROLL ANIMATION OBSERVER
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.15 // Section is detected when 15% visible
+        };
+
+        const observer = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('in-view');
+                } else {
+                    // Remove the class when it goes out of view to re-trigger the 3D effect later
+                    entry.target.classList.remove('in-view');
+                }
+            });
+        }, observerOptions);
+
+        // Target all sections with the reveal-section class
+        document.querySelectorAll('.reveal-section').forEach((section) => {
+            observer.observe(section);
+        });
+
+        // Contact Form Logic
+        const form = document.getElementById('contact-form');
+        const submitBtn = document.getElementById('submit-btn');
+        const toast = document.getElementById('toast');
+
+        // Initialize EmailJS with Public Key
+        emailjs.init("6lytkDxaIhWpYzSg9");
+
+        form.addEventListener('submit', function(event) {
+            event.preventDefault();
+            
+            // UI Loading State
+            const originalBtnContent = submitBtn.innerHTML;
+            submitBtn.disabled = true;
+            submitBtn.innerHTML = `
+                <div class="animate-spin rounded-full h-5 w-5 border-b-2 border-white"></div>
+                <span class="ml-2">Sending...</span>
+            `;
+
+            // Send Form using EmailJS
+            // NOTE: 'default_service' is a placeholder. If you have a specific Service ID (e.g. 'service_gmail'), replace 'default_service' below.
+            emailjs.sendForm('service_msgyag7', 'template_ax77u17', this)
+                .then(function() {
+                    console.log('SUCCESS!');
+                    
+                    // Reset Form
+                    form.reset();
+                    
+                    // Reset Button
+                    submitBtn.disabled = false;
+                    submitBtn.innerHTML = originalBtnContent;
+
+                    // Show Success Toast
+                    toast.classList.remove('translate-y-20', 'opacity-0');
+                    
+                    // Hide Toast after 3 seconds
+                    setTimeout(() => {
+                        toast.classList.add('translate-y-20', 'opacity-0');
+                    }, 3000);
+
+                }, function(error) {
+                    console.log('FAILED...', error);
+                    
+                    // Reset Button on Failure
+                    submitBtn.disabled = false;
+                    submitBtn.innerHTML = originalBtnContent;
+                    
+                    alert('Failed to send message. Please check the console for details.');
+                });
+        });
+    </script>
+</body>
+</html>
